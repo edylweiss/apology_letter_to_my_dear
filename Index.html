@@ -1,0 +1,977 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>A Love Letter For Nie Yechuan ♡</title>
+
+<style>
+
+/* CUSTOM FONT */
+@font-face {
+  font-family: "Rustic";
+  src: url("fonts/RusticRoadway.woff2")
+       format("woff2");
+  font-display: swap;
+}
+
+:root {
+  --olive: #89974d;
+  --darkgreen: #364b2b;
+  --paper: #f0f0e9;
+  --white: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+
+  /* YOUR ORIGINAL BACKGROUND */
+  background-image: url("me n u 4.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  font-family: Georgia, serif;
+  color: var(--darkgreen);
+}
+
+/* SOFT BACKGROUND OVERLAY */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.12);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* =====================================
+   PAGE 1 — VINTAGE ENVELOPE INTRO
+===================================== */
+
+#envelopeIntro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 45px 16px;
+  text-align: center;
+
+  background:
+    radial-gradient(circle at 15% 15%, #fffaf0, transparent 48%),
+    radial-gradient(circle at 85% 85%, #cba889, transparent 50%),
+    #e8d5c0;
+
+  transition: opacity .7s ease, visibility .7s ease;
+}
+
+#envelopeIntro.intro-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.envelope-intro-title {
+  font-family: "Rustic", "Brush Script MT", cursive;
+  font-size: clamp(36px, 7vw, 65px);
+  font-weight: normal;
+  color: #704a42;
+  margin: 0 0 12px;
+}
+
+.envelope-intro-subtitle {
+  font-size: 14px;
+  color: #88685c;
+  letter-spacing: 1px;
+  margin: 0 0 50px;
+}
+
+/* ENVELOPE */
+.vintage-envelope {
+  position: relative;
+  width: min(85vw, 440px);
+  height: 285px;
+  margin: 0 auto 25px;
+  perspective: 1200px;
+}
+
+/* ENVELOPE BACK */
+.vintage-envelope-back {
+  position: absolute;
+  inset: 0;
+  background: #d7b69a;
+  border-radius: 5px;
+  box-shadow: 0 18px 40px rgba(65,35,25,.25);
+}
+
+/* INNER LETTER */
+.vintage-letter {
+  position: absolute;
+  left: 8%;
+  bottom: 12px;
+  width: 84%;
+  height: 250px;
+  padding: 25px;
+
+  background: #fffaf3;
+  box-shadow: 0 4px 15px rgba(0,0,0,.12);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 2;
+  transition: transform 1.3s ease .5s;
+}
+
+.vintage-letter h2 {
+  font-family: "Rustic", "Brush Script MT", cursive;
+  font-size: clamp(26px, 5vw, 39px);
+  font-weight: normal;
+  color: #533b35;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.vintage-letter p {
+  font-family: "Rustic", cursive;
+  font-size: 23px;
+  color: #8e6b5e;
+}
+
+/* ENVELOPE FRONT */
+.vintage-envelope-front {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+
+  background:
+    linear-gradient(
+      rgba(255,247,230,.18),
+      rgba(255,247,230,.18)
+    ),
+    url("floral-pattern.jpg") center / cover,
+    #efdbc5;
+
+  clip-path: polygon(
+    0 0, 50% 56%, 100% 0,
+    100% 100%, 0 100%
+  );
+}
+
+/* ENVELOPE BOTTOM */
+.vintage-envelope-bottom {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+
+  background:
+    url("floral-pattern.jpg") center / cover,
+    #f5e4d0;
+
+  clip-path: polygon(
+    0 100%, 50% 46%, 100% 100%
+  );
+}
+
+/* ENVELOPE TOP FLAP */
+.vintage-envelope-flap {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 58%;
+  z-index: 6;
+
+  background:
+    url("floral-pattern.jpg") center / cover,
+    #e8c9ac;
+
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top center;
+  transition: transform 1s ease;
+  backface-visibility: hidden;
+}
+
+/* RED WAX SEAL */
+.vintage-wax-seal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  z-index: 8;
+
+  display: grid;
+  place-items: center;
+
+  background:
+    radial-gradient(
+      circle at 30% 25%,
+      #ec7880,
+      #a11c31 65%,
+      #680d1c
+    );
+
+  border: 5px double #e6a2a1;
+  color: #ffd6ce;
+  font-size: 35px;
+  cursor: pointer;
+
+  box-shadow: 0 5px 13px rgba(90,20,25,.4);
+  transition: opacity .4s ease;
+}
+
+/* LAVENDER */
+.vintage-lavender {
+  position: absolute;
+  right: 10px;
+  bottom: 4px;
+  z-index: 7;
+
+  font-size: 70px;
+  transform: rotate(-30deg);
+  pointer-events: none;
+  transition: opacity .4s ease;
+}
+
+/* OPEN ENVELOPE */
+.vintage-envelope.open .vintage-envelope-flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+
+.vintage-envelope.open .vintage-letter {
+  transform: translateY(-150px);
+  z-index: 3;
+}
+
+.vintage-envelope.open .vintage-wax-seal,
+.vintage-envelope.open .vintage-lavender {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* READ LETTER BUTTON */
+.vintage-read-button {
+  display: none;
+  margin-top: 45px;
+  padding: 14px 35px;
+
+  background: #a45c68;
+  border: none;
+  border-radius: 30px;
+  color: white;
+
+  font-family: Georgia, serif;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(80,30,40,.2);
+}
+
+.vintage-read-button.visible {
+  display: inline-block;
+  animation: envelopeButtonFade .7s ease;
+}
+
+.vintage-read-button:hover {
+  background: #bf7885;
+}
+
+@keyframes envelopeButtonFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* =====================================
+   PAGE 2 — YOUR ORIGINAL SCRAPBOOK
+===================================== */
+
+/* MAIN LAYOUT */
+.container {
+  width: min(92%, 680px);
+  margin: 0 auto;
+  padding: 70px 0 90px;
+  position: relative;
+}
+
+/* TOP PHOTO CARD */
+.photo-card {
+  position: relative;
+  width: 100%;
+  background: #f1f1eb;
+  padding: 14px;
+  transform: rotate(4deg);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+  z-index: 2;
+  transition: transform .5s ease;
+}
+
+.photo-card:hover {
+  transform: rotate(0deg) scale(1.01);
+}
+
+.photo-border {
+  background: var(--olive);
+  padding: 17px;
+}
+
+.photo-area {
+  position: relative;
+  width: 100%;
+  height: 370px;
+  overflow: hidden;
+}
+
+.photo-area img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* WHITE OVERLAY ON PHOTO */
+.photo-area::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.30);
+  pointer-events: none;
+}
+
+/* HANDWRITTEN PHOTO TITLE */
+.photo-title {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  color: white;
+  font-family: "Rustic", cursive;
+  font-size: clamp(40px, 7vw, 76px);
+  line-height: 1.1;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  padding: 20px;
+}
+
+.photo-title span {
+  display: block;
+}
+
+/* LITTLE WHITE HEARTS */
+.photo-heart {
+  position: absolute;
+  z-index: 4;
+  color: white;
+  font-size: 30px;
+}
+
+.heart-one {
+  top: 20%;
+  right: 25%;
+}
+
+.heart-two {
+  bottom: 25%;
+  left: 8%;
+}
+
+.heart-three {
+  bottom: 10%;
+  right: 7%;
+}
+
+/* LETTER CARD */
+.letter-card {
+  position: relative;
+  width: 96%;
+  margin: -5px auto 0;
+  padding: 65px 48px 65px;
+  background: var(--paper);
+  transform: rotate(-5deg);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+  z-index: 3;
+}
+
+/* LETTER HEADING */
+.letter-card h1 {
+  font-family: "Rustic", cursive;
+  font-size: clamp(34px, 6vw, 48px);
+  font-weight: normal;
+  color: var(--darkgreen);
+  margin: 0 0 25px;
+}
+
+/* LETTER BODY */
+.letter-content {
+  font-family: "Comic Sans MS", "Trebuchet MS", cursive;
+  font-size: 17px;
+  line-height: 1.9;
+  letter-spacing: 0.3px;
+  color: #394a32;
+}
+
+.letter-content p {
+  margin: 0 0 18px;
+}
+
+/* STAMP */
+.stamp {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  width: 82px;
+  height: 105px;
+  background: var(--olive);
+  padding: 6px;
+
+  clip-path: polygon(
+    0 0, 8% 0, 8% 4%, 16% 4%,
+    16% 0, 24% 0, 24% 4%,
+    32% 4%, 32% 0, 40% 0,
+    40% 4%, 48% 4%, 48% 0,
+    56% 0, 56% 4%, 64% 4%,
+    64% 0, 72% 0, 72% 4%,
+    80% 4%, 80% 0, 88% 0,
+    88% 4%, 96% 4%, 96% 0,
+    100% 0, 100% 100%, 0 100%
+  );
+
+  transform: rotate(8deg);
+}
+
+.stamp img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 3px solid #e5e8cf;
+}
+
+/* GREEN FLOWER DECORATION */
+.flower {
+  position: absolute;
+  left: -10px;
+  bottom: -35px;
+  width: 115px;
+  height: 115px;
+  opacity: .85;
+  transform: rotate(-15deg);
+}
+
+.flower span {
+  position: absolute;
+  left: 42px;
+  top: 12px;
+  width: 32px;
+  height: 90px;
+  border-radius: 50%;
+  background: var(--olive);
+  transform-origin: center 46px;
+}
+
+.flower span:nth-child(1) {
+  transform: rotate(0deg);
+}
+
+.flower span:nth-child(2) {
+  transform: rotate(60deg);
+}
+
+.flower span:nth-child(3) {
+  transform: rotate(120deg);
+}
+
+/* SMALL HEART */
+.bottom-heart {
+  position: absolute;
+  bottom: 32px;
+  right: 35px;
+  color: var(--olive);
+  font-size: 30px;
+}
+
+/* SIGNATURE */
+.signature {
+  font-family: "Rustic", cursive;
+  font-size: 35px;
+  text-align: right;
+  margin-top: 35px;
+  color: var(--darkgreen);
+}
+
+/* ORIGINAL OPENING ANIMATION */
+.photo-card {
+  animation: photoEnter 1.2s ease both;
+}
+
+.letter-card {
+  animation: letterEnter 1.4s ease .4s both;
+}
+
+@keyframes photoEnter {
+  from {
+    opacity: 0;
+    transform: translateY(-70px) rotate(8deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(4deg);
+  }
+}
+
+@keyframes letterEnter {
+  from {
+    opacity: 0;
+    transform: translateY(100px) rotate(-8deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(-5deg);
+  }
+}
+
+/* =====================================
+   MUSIC CONTROL
+===================================== */
+
+.music-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+
+  display: none;
+  padding: 11px 18px;
+
+  background: rgba(255,248,237,.95);
+  color: var(--darkgreen);
+  border: 1px solid var(--olive);
+  border-radius: 30px;
+
+  font-family: Georgia, serif;
+  font-size: 13px;
+  cursor: pointer;
+
+  box-shadow: 0 5px 15px rgba(0,0,0,.15);
+  transition: .3s;
+}
+
+.music-toggle:hover {
+  background: var(--olive);
+  color: white;
+}
+
+.music-toggle.visible {
+  display: block;
+}
+
+/* =====================================
+   MOBILE RESPONSIVE
+===================================== */
+
+@media (max-width: 600px) {
+  .container {
+    width: 94%;
+    padding-top: 45px;
+  }
+
+  .photo-card {
+    padding: 9px;
+  }
+
+  .photo-border {
+    padding: 10px;
+  }
+
+  .photo-area {
+    height: 260px;
+  }
+
+  .photo-title {
+    font-size: 43px;
+  }
+
+  .letter-card {
+    width: 100%;
+    padding: 110px 25px 65px;
+  }
+
+  .letter-card h1 {
+    font-size: 35px;
+  }
+
+  .letter-content {
+    font-size: 15px;
+  }
+
+  .stamp {
+    width: 65px;
+    height: 85px;
+    top: 15px;
+    right: 20px;
+  }
+
+  .flower {
+    transform: scale(.7) rotate(-15deg);
+    transform-origin: bottom left;
+  }
+
+  .vintage-envelope {
+    height: 225px;
+  }
+
+  .vintage-letter {
+    height: 200px;
+  }
+
+  .vintage-envelope.open .vintage-letter {
+    transform: translateY(-115px);
+  }
+
+  .vintage-lavender {
+    font-size: 55px;
+  }
+
+  .envelope-intro-subtitle {
+    margin-bottom: 45px;
+  }
+
+  .music-toggle {
+    top: 12px;
+    right: 12px;
+    padding: 9px 13px;
+    font-size: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =====================================
+     BACKGROUND MUSIC
+===================================== -->
+
+<audio id="backgroundMusic" loop preload="auto">
+  <source src="Harry Styles - Coming Up Roses (Instrumental).mp3" type="audio/mpeg">
+</audio>
+
+<!-- =====================================
+     PAGE 1: ENVELOPE INTRODUCTION
+===================================== -->
+
+<section id="envelopeIntro">
+
+  <h1 class="envelope-intro-title">
+    A Little Letter For You ♡
+  </h1>
+
+  <p class="envelope-intro-subtitle">
+    Made with love, just for you
+  </p>
+
+  <div class="vintage-envelope" id="vintageEnvelope">
+
+    <div class="vintage-envelope-back"></div>
+
+    <div class="vintage-letter">
+      <h2>
+        My Dearest<br>
+        Nie Yechuan ♡
+      </h2>
+
+      <p>With all my love...</p>
+    </div>
+
+    <div class="vintage-envelope-front"></div>
+    <div class="vintage-envelope-bottom"></div>
+    <div class="vintage-envelope-flap"></div>
+
+    <button
+      class="vintage-wax-seal"
+      type="button"
+      onclick="openVintageEnvelope()"
+      aria-label="Open the envelope">
+      ♡
+    </button>
+
+    <div class="vintage-lavender">🪻</div>
+
+  </div>
+
+  <button
+    class="vintage-read-button"
+    id="vintageReadButton"
+    type="button"
+    onclick="enterLoveLetter()">
+    Read My Letter ♡
+  </button>
+
+</section>
+
+<!-- =====================================
+     MUSIC ON/OFF BUTTON
+===================================== -->
+
+<button
+  id="musicToggle"
+  class="music-toggle"
+  type="button"
+  onclick="toggleMusic()">
+  🔇 Music OFF
+</button>
+
+<!-- =====================================
+     PAGE 2: ORIGINAL SCRAPBOOK LETTER
+===================================== -->
+
+<main class="container">
+
+  <!-- TOP POLAROID PHOTO -->
+  <div class="photo-card">
+
+    <div class="photo-border">
+
+      <div class="photo-area">
+
+        <img src="me n you 3.jpg"
+             alt="Our special memory">
+
+        <div class="photo-title">
+          <span>A Love Letter</span>
+          <span>For You!</span>
+        </div>
+
+        <span class="photo-heart heart-one">♥</span>
+        <span class="photo-heart heart-two">♥</span>
+        <span class="photo-heart heart-three">♥</span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- LETTER CARD -->
+  <article class="letter-card">
+
+    <!-- POSTAGE STAMP -->
+    <div class="stamp">
+      <img src="me n you.jpg"
+           alt="Our little memory">
+    </div>
+
+    <h1>Dear, Nie Yechuan...</h1>
+
+    <div class="letter-content">
+
+      <p>My sayangkuuu, ♡</p>
+
+      <p>
+        I made this little letter for you because
+        there are so many things I want to say,
+        and I hope you can feel how sincere
+        every word is.
+      </p>
+    
+      <p>
+        First of all, I want to deeply and sincerely 
+		apologize for how I have been treating you lately.
+		I know I've done you very wrong..
+		that you are hurt and mad at me, 
+		and you have the right to be. 
+      </p>
+		
+      <p>
+       Looking backk at my actions towards you, 
+	   I completely understand why you feel like I,
+	   I don't appreciate you, and it breaks my heart 
+	   to know that I caused you to feel that way. 
+	   You matter to me sayang. You deserved to feel 
+	   loved, value, and prioritize in this relationship
+	   and lately, I have failed to give you that.
+	   </p>
+      <p>
+        I want to take full responsibility for 
+		the mistakes I've made. My late replies leave you 
+		hanging and make you feel ignored, and there is 
+		absolutely no excuse for lying to you. Dishonesty 
+		damages the trust we have built, and I hate that 
+		I did that to you. Breaking my promises told you 
+		that my word doesn't matter, and even small things, 
+		like disappearing to sleep without letting you know 
+		I'm tired, were unfair and left you wondering.
+      </p>
+
+      <p>
+        None of this means you don't matter to me. 
+		You mean the world to me, but I know my actions 
+		haven't shown it. I have been careless with your 
+		feelings and your trust, and for that, I am truly, 
+		deeply sorry. I love you, and I miss your sweet, 
+		affectionate self so much. It hurts to know that 
+		my carelessness is the reason there is distance 
+		between us right now.
+      </p>
+
+      <p>
+       I don't expect everything to be fixed with just a letter, 
+	   but I want you to know that I am committed to making this right.
+      </p>
+
+      <p>
+       I want to learn how to be a better partner to you 
+	   by communicating better, being completely honest, 
+	   keeping my promises, and making sure you never 
+	   doubt how much I appreciate having you in my life.
+      </p>
+
+      <p>
+        I love you so much, sayangkuu yechuan.
+        Thank you for being someone making my life feel 
+		better and there is always a special place for you in my heart.
+		I want you to know that whatever happen,
+		I would always love you..
+      </p>
+
+    </div>
+
+    <div class="signature">
+      From, Your Honey : ed ♡
+    </div>
+
+    <!-- GREEN FLOWER -->
+    <div class="flower">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+
+    <!-- LITTLE HEART -->
+    <div class="bottom-heart">♥</div>
+
+  </article>
+
+</main>
+
+<!-- =====================================
+     JAVASCRIPT
+===================================== -->
+
+<script>
+
+/* ENVELOPE */
+let vintageEnvelopeOpened = false;
+
+function openVintageEnvelope() {
+  if (vintageEnvelopeOpened) return;
+
+  vintageEnvelopeOpened = true;
+
+  document.getElementById("vintageEnvelope")
+    .classList.add("open");
+
+  setTimeout(function() {
+    document.getElementById("vintageReadButton")
+      .classList.add("visible");
+  }, 1500);
+}
+
+/* MUSIC SETUP */
+const music = document.getElementById("backgroundMusic");
+const musicButton = document.getElementById("musicToggle");
+
+music.volume = 0.3;
+let musicEnabled = true;
+
+function updateMusicButton() {
+  musicButton.textContent =
+    music.paused ? "🔇 Music OFF" : "🔊 Music ON";
+}
+
+function startMusic() {
+  if (!musicEnabled) return;
+
+  const playPromise = music.play();
+
+  if (playPromise !== undefined) {
+    playPromise
+      .then(updateMusicButton)
+      .catch(function(error) {
+        console.log("Music could not start:", error);
+        updateMusicButton();
+      });
+  }
+}
+
+function toggleMusic() {
+  if (music.paused) {
+    musicEnabled = true;
+    startMusic();
+  } else {
+    musicEnabled = false;
+    music.pause();
+    updateMusicButton();
+  }
+}
+
+/* ENTER LOVE LETTER */
+function enterLoveLetter() {
+  document.getElementById("envelopeIntro")
+    .classList.add("intro-hidden");
+
+  musicButton.classList.add("visible");
+
+  window.scrollTo(0, 0);
+
+  // Start song after clicking Read My Letter
+  startMusic();
+
+  setTimeout(function() {
+    document.getElementById("envelopeIntro")
+      .style.display = "none";
+  }, 700);
+}
+
+/* AUDIO STATE */
+music.addEventListener("play", updateMusicButton);
+music.addEventListener("pause", updateMusicButton);
+music.addEventListener("error", updateMusicButton);
+
+</script>
+
+</body>
+</html>
